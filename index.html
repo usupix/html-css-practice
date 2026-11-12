@@ -14,6 +14,9 @@
         font-family: Arial, sans-serif;
         color: #333;
         background: #f2d117;
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh;
     }
 
     main {
@@ -21,6 +24,7 @@
         margin: 0 auto;
         padding: 50px 20px;
         text-align: center;
+        flex: 1;
     }
 
     h1 {
@@ -37,9 +41,9 @@
 
     .card {
         background: #fff;
-        padding: 33px 25px;
+        padding: 33px;
         min-height: 265px;
-        border-radius: 12px;
+        border-radius: 50px;
     }
 
     h2 {
@@ -48,12 +52,16 @@
         color: #f2d117;
     }
 
-    p {
-        font-size: 15px;
-        line-height: 1.6;
-        font-style: italic;
-        margin: 0 0 22px;
+    footer {
+        background-color: #333;
+        color: #fff;
+        width: 100%;
+        padding: 25px 20px;
+        text-align: center;
+        font-size: 14px;
     }
+
+
 
     .more {
         color: #333;
@@ -63,11 +71,8 @@
         letter-spacing: 1px;
     }
 
-    footer {
-        color: #fff;
-        font-size: 13px;
-        margin-top: 23px;
-    }
+
+
 
     @media (max-width: 800px) {
         .grid {
@@ -76,22 +81,11 @@
     }
 
     @media (max-width: 530px) {
-        main {
-            padding: 38px 15px;
-        }
-
-        h1 {
-            font-size: 31px;
-        }
-
         .grid {
             grid-template-columns: 1fr;
             gap: 14px;
         }
 
-        .card {
-            min-height: auto;
-        }
     }
   </style>
 </head>
@@ -106,7 +100,10 @@
       <div class="card"><h2>05</h2><p>А вы знали, что если смещать уран с теплой водой, то вы создатите ядерную реакцию</p><span class="more">LEARN MORE</span></div>
       <div class="card"><h2>06</h2><p>Чугун никого не убивал</p><span class="more">LEARN MORE</span></div>
     </div>
-    <footer>Дизайн типо адаптивный</footer>
   </main>
+
+    <footer>
+    <p>2026 Название компании. Все права защищены.</p>
+  </footer>
 </body>
 </html>
