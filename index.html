@@ -1,109 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Дизайн типо адаптивный</title>
+  <meta name="description" content="Машинка шириной 200px, нарисованная на CSS, выезжает слева и останавливается в 50px от правого края.">
+  <title>Машинка на CSS</title>
   <style>
     * {
-        box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
     }
 
     body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        color: #333;
-        background: #f2d117;
-        display: flex;
-        flex-direction: column;
-        min-height: 100dvh;
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      
+      background:
+        radial-gradient(ellipse 72px 19px at 18% 22%, #fff 98%, transparent 100%),
+        radial-gradient(ellipse 59px 18px at 25% 22%, #fff 98%, transparent 100%),
+        radial-gradient(ellipse 63px 17px at 59% 34%, #fff 98%, transparent 100%),
+        radial-gradient(ellipse 44px 16px at 65% 34%, #fff 98%, transparent 100%),
+        radial-gradient(circle 47px at 83% 19%, #ffe7a0 98%, transparent 100%),
+        linear-gradient(to bottom, #85cfea 0%, #d5f1f7 63%, #9ed3a5 63%, #73b987 100%);
     }
 
-    main {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 50px 20px;
-        text-align: center;
-        flex: 1;
+    body::before {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 14vh;
+      left: 0;
+      height: 160px;
+      border-top: 8px solid #eaf0df;
+      border-bottom: 8px solid #657486;
+      background:
+        repeating-linear-gradient(to right, #f7f0ca 0 70px, transparent 70px 150px)
+          center / 100% 7px no-repeat,
+        linear-gradient(#47556f, #303c54);
+      box-shadow: 0 -9px 0 #8eaf98, 0 12px 0 #aac8a4;
     }
 
-    h1 {
-        color: white;
-        font-size: 45px;
-        margin: 0 0 30px;
+    .car {
+      position: absolute;
+      z-index: 1;
+      bottom: calc(14vh + 55px);
+      left: -200px;
+      width: 200px;
+      height: 59px;
+      border: 2px solid #ad3554;
+      border-radius: 24px 34px 12px 12px;
+      background:
+        radial-gradient(circle at 96% 30%, #fff3b8 0 7px, transparent 8px),
+        radial-gradient(circle at 3% 42%, #ffa58b 0 5px, transparent 6px),
+        linear-gradient(to bottom, transparent 60%, #ffc4b2 60% 64%, transparent 64%),
+        linear-gradient(155deg, #ff8389, #ee526b 53%, #c83457);
+      box-shadow:
+        inset 0 -8px 0 #9f294b,
+        inset 0 2px 0 #ffb2b4,
+        0 15px 20px #19283b38;
+      animation: drive 4s cubic-bezier(.2, .75, .28, 1) forwards;
     }
 
-    .grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
+    .car::before {
+      content: "";
+      position: absolute;
+      bottom: 53px;
+      left: 32px;
+      width: 130px;
+      height: 55px;
+      border: 7px solid #e64b61;
+      border-bottom: 0;
+      border-radius: 55px 67px 0 0 / 42px 44px 0 0;
+      background:
+        linear-gradient(to right, transparent 46%, #e64b61 46% 54%, transparent 54%),
+        linear-gradient(135deg, #e6fbff, #8dccdf 62%, #70afcb);
+      box-shadow: inset 0 3px 0 #ffffff80;
+      transform: skewX(-8deg);
     }
 
-    .card {
-        background: #fff;
-        padding: 33px;
-        min-height: 265px;
-        border-radius: 50px;
+    .car::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: -2px;
+      width: 200px;
+      height: 44px;
+      background:
+        radial-gradient(circle at 41px 22px,
+          #f3f6fa 0 5px, #8290a3 6px 9px, #283347 10px 16px,
+          #151e2e 17px 20px, transparent 21px),
+        radial-gradient(circle at 160px 22px,
+          #f3f6fa 0 5px, #8290a3 6px 9px, #283347 10px 16px,
+          #151e2e 17px 20px, transparent 21px);
     }
 
-    h2 {
-        margin: 0 0 22px;
-        font-size: 41px;
-        color: #f2d117;
+    @keyframes drive {
+      from {
+        left: -200px;
+      }
+      to {
+        
+        left: calc(100% - 250px);
+      }
     }
 
-    footer {
-        background-color: #333;
-        color: #fff;
-        width: 100%;
-        padding: 25px 20px;
-        text-align: center;
-        font-size: 14px;
-    }
-
-
-
-    .more {
-        color: #333;
-        border-bottom: 1px solid #f2d117;
-        padding-bottom: 5px;
-        font-size: 12px;
-        letter-spacing: 1px;
-    }
-
-
-
-
-    @media (max-width: 800px) {
-        .grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 530px) {
-        .grid {
-            grid-template-columns: 1fr;
-            gap: 14px;
-        }
-
+    @media (prefers-reduced-motion: reduce) {
+      .car {
+        left: calc(100% - 250px);
+        animation: none;
+      }
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Дизайн типо адаптивный</h1>
-    <div class="grid">
-      <div class="card"><h2>01</h2><p>Очень не большой и разный красивый и умный текст, который покажет всю суть</p><span class="more">LEARN MORE</span></div>
-      <div class="card"><h2>02</h2><p>Большой очень текст где я буду писать разные буквы и они будут складываюстя в слова русского языка, которые должны вам поднять настроение и сделать этот прекрасный и чудесный день как можно лучше</p><span class="more">LEARN MORE</span></div>
-      <div class="card"><h2>03</h2><p>Текст в 3 слова</p><span class="more">LEARN MORE</span></div>
-      <div class="card"><h2>04</h2><p>Такой среднячек текст ваще супер опер кумер да</p><span class="more">LEARN MORE</span></div>
-      <div class="card"><h2>05</h2><p>А вы знали, что если смещать уран с теплой водой, то вы создатите ядерную реакцию</p><span class="more">LEARN MORE</span></div>
-      <div class="card"><h2>06</h2><p>Чугун никого не убивал</p><span class="more">LEARN MORE</span></div>
-    </div>
-  </main>
-
-    <footer>
-    <p>2026 Название компании. Все права защищены.</p>
-  </footer>
+  <div class="car" role="img" aria-label="Красная машинка на дороге"></div>
 </body>
 </html>
